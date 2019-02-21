@@ -13,6 +13,30 @@ class IOStructure:
         IOStructure.__IOStructure_Mode = Mode
         IOStructure.__IOStructure_Pin = Pin
         IOStructure.__IOStructure_Group = Group
+ 
+    def SetIOStructRemap(self, Remap):
+        IOStructure.__IOStructure_Remap = Remap
+
+    def GetIOStructRemap(self):
+        return IOStructure.__IOStructure_Remap
+
+    def SetIOStructMode(self, Mode):
+        IOStructure.__IOStructure_Mode = Mode
+
+    def GetIOStructMode(self):
+        return IOStructure.__IOStructure_Mode
+
+    def SetIOStructPin(self, Pin):
+        IOStructure.__IOStructure_Pin = Pin
+
+    def GetIOStructPin(self, Pin):
+        return IOStructure.__IOStructure_Pin
+
+    def SetIOStructGroup(self, Group):
+        IOStructure.__IOStructure_Group = Group
+
+    def GetIOStructGroup(self, Group):
+        return IOStructure.__IOStructure_Group
 
     def GetStruct(self):
         return IOStructure.__IOStructure_Remap, IOStructure.__IOStructure_Mode, IOStructure.__IOStructure_Pin, IOStructure.__IOStructure_Group
