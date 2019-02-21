@@ -15,16 +15,15 @@ class IOStructure:
         IOStructure.__IOStructure_Group = Group
 
     def GetStruct(self):
-        return IOStructure.__IOStructure_Remap
-        return IOStructure.__IOStructure_Mode
+        return IOStructure.__IOStructure_Remap, IOStructure.__IOStructure_Mode, IOStructure.__IOStructure_Pin, IOStructure.__IOStructure_Group
 
 print(IOStructure.__doc__)
 test = IOStructure()
-test.SetRemap(2, "OutPut", )
-print(test.GetRemap())
-print(IOStructure.__dict__)
-# 可以随便增加类中的变量？？？
-IOStructure.age = 1
-print(IOStructure.age)
-print(IOStructure.__dict__)
+test.SetStruct(1, "OutPut", 2, "A")
+print(test.GetStruct())
+# print(IOStructure.__dict__)
+# # 可以随便增加类中的变量？？？
+# IOStructure.age = 1
+# print(IOStructure.age)
+# print(IOStructure.__dict__)
 
