@@ -15,7 +15,12 @@ class IOStructure:
         IOStructure.__IOStructure_Group = Group
  
     def SetIOStructRemap(self, Remap):
-        IOStructure.__IOStructure_Remap = Remap
+        if Remap >= 0 and Remap <= 3:
+            IOStructure.__IOStructure_Remap = Remap
+        else:
+            pass
+            # TODO:抛出异常
+
 
     def GetIOStructRemap(self):
         return IOStructure.__IOStructure_Remap
@@ -44,6 +49,8 @@ class IOStructure:
 print(IOStructure.__doc__)
 test = IOStructure()
 test.SetStruct(1, "OutPut", 2, "A")
+print(test.GetStruct())
+test.SetIOStructRemap(3)
 print(test.GetStruct())
 # print(IOStructure.__dict__)
 # # 可以随便增加类中的变量？？？
