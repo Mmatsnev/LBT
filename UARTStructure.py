@@ -2,25 +2,22 @@
 # -*- coding: UTF-8 -*-
 
 import IOStructure
-class UART_Struct(IOStructure.IOStruct):
+import BugStructure
+class UARTStruct(IOStructure.IOStruct, BugStructure.BugStruct):
+    """
+    继承IOSturct类
+    """
     Introduce = "None"
-
+    BugTextList = []
     # def __init__(self, data):
     #     self.data = data
 
-    def setdata(self, data):
-        self.Introduce = data
 
-    def getdata(self):
-        return self.Introduce
 
-test2 = UART_Struct(4, 1,2,3)
-test2.setdata(2)
-print(test2.getdata())
-test2.data = 5
-print(test2.getdata())
-test2.SetIOStructGroup("B")
-print(test2.GetIOStructGroup())
-test3 = UART_Struct(4, 1,2,3)
-test3.setdata(3)
-print(test2.getdata())
+def test_UARTStruct():
+    uart0 = UARTStruct(0, "RX", 0, "A")
+    uart0.addBugList("DMA model0 无法使用")
+    print(uart0.GetStruct())
+    for bugdata in uart0.GetBugList():
+        print("bug: " + bugdata)
+test_UARTStruct()
