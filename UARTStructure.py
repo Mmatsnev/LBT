@@ -18,10 +18,12 @@ class UARTStruct(IOStructure.IOStruct, BugStructure.BugStruct):
     # def __init__(self, data):
     #     self.data = data
     def UARTStructTransformToJson(self, ModelName):
-        self.JsonData = {
-            "ModelName":ModelName, 
-            "IO":self.IOStructTransformToJson()
-        }
+        self.JsonData = {"ModelName":ModelName}
+        self.JsonData["Rx"] = self.IOStructTransformToJson()
+        counter = 0
+        for i in self.GetBugList():
+            counter += 1
+            self.JsonData["Bug" + str(counter)] = i
         return self.JsonData
 
 if __name__ == "__main__":
@@ -29,7 +31,7 @@ if __name__ == "__main__":
 
     uart0.addBugList("DMA model0 无法使用")
     uart0.addBugList("UART FIFO")
-    print(uart0.GetStruct())
-    print(uart0.UARTStructTransformToJson("Uart0")["IO"])
+    print(uart0.UARTStructTransformToJson("Uart0"))
+    print(json.loads(uart0.UARTStructTransformToJson("Uart0")["Rx"])["Group"])
     for bugdata in uart0.GetBugList():
         print("bug: " + bugdata)
