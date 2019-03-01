@@ -1,55 +1,76 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+import json
+import os
+
 class IOStruct(object):
     """
     外设模块的IO结构
     """
 
-    def __init__(self, Remap, Mode, Pin, Group):
-        IOStruct.IOStruct_Remap = Remap
-        IOStruct.IOStruct_Mode = Mode
-        IOStruct.IOStruct_Pin = Pin
-        IOStruct.IOStruct_Group = Group
+    def __init__(self):
+        super().__init__()
+        self.IOStruct_Remap = "Remap_1"
+        self.IOStruct_Mode = "InputPullUp"
+        self.IOStruct_Pin = "Pin_0"
+        self.IOStruct_Group = "GPIOA"
  
     def SetIOStructRemap(self, Remap):
-        if Remap >= 0 and Remap <= 3:
-            IOStruct.IOStruct_Remap = Remap
+        if int(Remap[-1]) >= 0 and int(Remap[-1]) <= 3:
+            self.IOStruct_Remap = Remap
         else:
             pass
             # TODO:抛出异常
 
 
     def GetIOStructRemap(self):
-        return IOStruct.IOStruct_Remap
+        return self.IOStruct_Remap
 
     def SetIOStructMode(self, Mode):
-        IOStruct.IOStruct_Mode = Mode
+        self.IOStruct_Mode = Mode
 
     def GetIOStructMode(self):
-        return IOStruct.IOStruct_Mode
+        return self.IOStruct_Mode
 
     def SetIOStructPin(self, Pin):
-        IOStruct.IOStruct_Pin = Pin
+        self.IOStruct_Pin = Pin
 
     def GetIOStructPin(self):
-        return IOStruct.IOStruct_Pin
+        return self.IOStruct_Pin
 
     def SetIOStructGroup(self, Group):
-        IOStruct.IOStruct_Group = Group
+        self.IOStruct_Group = Group
 
     def GetIOStructGroup(self):
-        return IOStruct.IOStruct_Group
+        return self.IOStruct_Group
 
     def GetStruct(self):
-        return IOStruct.IOStruct_Remap, IOStruct.IOStruct_Mode, IOStruct.IOStruct_Pin, IOStruct.IOStruct_Group
+        return self.IOStruct_Remap, self.IOStruct_Mode, self.IOStruct_Pin, self.IOStruct_Group
+
+    def IOStructTransformToJson(self):
+        self.JsonData = {
+            "Group":self.IOStruct_Group, 
+            "Model":self.IOStruct_Mode, 
+            "Pin":self.IOStruct_Pin, 
+            "Remap":self.IOStruct_Remap
+            }
+        return json.dumps(self.JsonData)
+        
 
 if __name__ == "__main__":
     print(IOStruct.__doc__)
-    test = IOStruct(1, "OutPut", 2, "A")
+    test = IOStruct()
     print(test.GetStruct())
-    test.SetIOStructRemap(3)
+    test.SetIOStructRemap("Remap_0")
+    test.SetIOStructGroup("GPIOA")
+    test.SetIOStructMode("RX")
+    test.SetIOStructPin("Pin_0")
     print(test.GetStruct())
+    print(test.TransformToJson())
+    test.SetIOStructPin("Pin_1")
+    test.SetIOStructMode("Tx")
+    print(test.TransformToJson())
     # print(IOStruct.__dict__)
     # # 可以随便增加类中的变量？？？
     # IOStruct.age = 1

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: UTF-8 -*-
+#-*- coding: UTF-8 -*-
 
 class BugStruct(object):
     """
@@ -8,6 +8,7 @@ class BugStruct(object):
     """
 
     def __init__(self):
+        super().__init__()
         self.BugTextList = []
 
     def addBugList(self, BugText):
