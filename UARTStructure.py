@@ -14,13 +14,14 @@ class UART_Struct(IOStructure.IOStruct):
     def getdata(self):
         return self.Introduce
 
-test2 = UART_Struct(4, 1,2,3)
-test2.setdata(2)
-print(test2.getdata())
-test2.data = 5
-print(test2.getdata())
-test2.SetIOStructGroup("B")
-print(test2.GetIOStructGroup())
-test3 = UART_Struct(4, 1,2,3)
-test3.setdata(3)
-print(test2.getdata())
+if __name__ == "__main__":
+    test2 = UART_Struct(4, 1,2,3)
+    test2.setdata(2)
+    print(test2.getdata())
+    test2.data = 5
+    print(test2.getdata())
+    test2.SetIOStructGroup("B")
+    print(test2.GetIOStructGroup())
+    test3 = UART_Struct(4, 1,2,3)
+    test3.setdata(3)
+    print(test2.getdata())

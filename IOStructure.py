@@ -44,7 +44,7 @@ class IOStruct:
     def GetStruct(self):
         return IOStruct.__IOStruct_Remap, IOStruct.__IOStruct_Mode, IOStruct.__IOStruct_Pin, IOStruct.__IOStruct_Group
 
-def test():
+if __name__ == "__main__":
     print(IOStruct.__doc__)
     test = IOStruct(1, "OutPut", 2, "A")
     print(test.GetStruct())
@@ -55,4 +55,3 @@ def test():
     # IOStruct.age = 1
     # print(IOStruct.age)
     # print(IOStruct.__dict__)
-
