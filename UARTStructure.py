@@ -8,30 +8,26 @@ class UARTStruct(IOStructure.IOStruct, BugStructure.BugStruct):
     """
     继承IOSturct类
     """
-    def SetIntroduce(self, text):
-        self.Introduce = text
+    def addUartBug(self, text):
+        # super().addBugList(text)
+        self.addBugList(text)
 
-    def GetIntroduce(self):
-        return self.Introduce
     # Introduce = "None"
     # BugTextList = []
     # def __init__(self, data):
     #     self.data = data
-    def UARTStructTransformToJson(self, ModelName):
-        self.JsonData = {"ModelName":ModelName}
-        self.JsonData["Rx"] = self.IOStructTransformToJson()
-        counter = 0
-        for i in self.GetBugList():
-            counter += 1
-            self.JsonData["Bug" + str(counter)] = i
-        return self.JsonData
+    def GetUARTStructData(self, ModelName):
+        self.UartStructData = {"ModelName": ModelName}
+        self.UartStructData["Rx"] = self.GetIOStructData()
+        self.UartStructData["BugList"] = self.GetBugStructData()
+        return self.UartStructData
 
 if __name__ == "__main__":
     uart0 = UARTStruct()
 
-    uart0.addBugList("DMA model0 无法使用")
-    uart0.addBugList("UART FIFO")
-    print(uart0.UARTStructTransformToJson("Uart0"))
-    print(json.loads(uart0.UARTStructTransformToJson("Uart0")["Rx"])["Group"])
-    for bugdata in uart0.GetBugList():
-        print("bug: " + bugdata)
+    uart0.addUartBug("DMA model0 无法使用")
+    uart0.addUartBug("UART FIFO")
+    print(uart0.GetUARTStructData("Uart0"))
+    print(uart0.GetUARTStructData("Uart0")["Rx"]["Group"])
+    # for bugdata in uart0.GetBugList():
+    #     print("bug: " + bugdata)
