@@ -17,9 +17,14 @@ class ChipMH1902(UARTStructure.UARTStruct, SPIStructure.SPIStruct):
 
 if __name__ == "__main__":
     mh1902 = ChipMH1902()
-    mh1902.SetUartRxIO("GroupA", "Pin_0", "Remap_0")
-    mh1902.SetUartTxIO("GroupA", "Pin_1", "Remap_0")
-    mh1902.SetUartTxIO("GroupD", "Pin_5", "Remap_0")
-    mh1902.AddUartBug("Uart Bug")
-    mh1902.addSpiBug("Spi Bug")
+    mh1902.AddUartRxIO("GroupA", "Pin_0", "Remap_0")
+    mh1902.AddUartTxIO("GroupA", "Pin_1", "Remap_0")
+    mh1902.AddUartTxIO("GroupD", "Pin_5", "Remap_0")
+    mh1902.AddSpiIO_MOSI("GPIOB", "Pin_2", "Remap_0")
+    mh1902.AddSpiIO_MISO("GPIOB", "Pin_3", "Remap_0")
+    mh1902.AddSpiIO_CS("GPIOB", "Pin_4", "Remap_0")
+    mh1902.AddSpiIO_Clk("GPIOB", "Pin_5", "Remap_0")
+    mh1902.AddUartBug("Uart Bug text")
+    mh1902.AddSpiBug("Spi Bug text")
+
     print(mh1902.GetMH1902StructData("MH1902"))

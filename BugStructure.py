@@ -9,31 +9,35 @@ class BugStruct(object):
 
     def __init__(self):
         super().__init__()
-        self.BugTextList = []
+        self.BugTextList = {}
+        self.counter = {}
 
-    def addBug(self, BugText):
-        self.BugTextList.append(BugText)
+    def addBug(self, Model, BugText):
+        if Model not in self.BugTextList:
+            self.BugTextList.update({Model: {}})
+            self.counter.update({Model: 0})
+        self.BugTextList[Model]["Bug" + str(self.counter[Model])] = BugText
+        self.counter[Model] += 1
+
 
     def GetBugList(self):
         return self.BugTextList
 
-    def GetBugListNumber(self):
-        return len(self.BugTextList)
+    def GetBugListNumber(self, Model):
+        return self.counter[Model]
 
-    def GetBugStructData(self):
-        self.BugStructData = {}
-        counter = 0
-        for i in self.GetBugList():
-            counter += 1
-            self.BugStructData["Bug" + str(counter)] = i
-
-        return self.BugStructData
+    def GetBugData(self, Model):
+        return self.BugTextList[Model]
     
 if __name__ == "__main__":
     buglist = BugStruct()
-    buglist.addBug("bug1")
-    buglist.addBug("bug2")
-    buglist.addBug("bug3")
-    for i in buglist.GetBugList():
-        print(i)
-    print(buglist.GetBugStructData())
+    buglist.addBug("uart0", "bug text1")
+    buglist.addBug("uart0", "bug text2")
+    buglist.addBug("spi0", "bug text2")
+    # buglist.addBug("bug2")
+    # buglist.addBug("bug3")
+    # for i in buglist.GetBugList():
+    #     print(i)
+    print(buglist.GetBugList())
+    print("uart0 bug:")
+    print(buglist.GetBugData("uart0"))

@@ -12,14 +12,12 @@ class UARTStruct(IOStructure.IOStruct, BugStructure.BugStruct):
         super().__init__()
         self.UartCounterRx = 0
         self.UartCounterTx = 0
-        self.UartCounterBug = 0
         self.UartData = {}
 
     def AddUartBug(self, text):
-        self.UartData["Bug" + str(self.UartCounterBug)] = text
-        self.UartCounterBug += 1
+        self.addBug("uart", text)
 
-    def SetUartRxIO(self, Group, Pin, Remap):
+    def AddUartRxIO(self, Group, Pin, Remap):
         self.SetIOStructGroup(Group)
         self.SetIOStructMode("Rx")
         self.SetIOStructPin(Pin)
@@ -27,7 +25,7 @@ class UARTStruct(IOStructure.IOStruct, BugStructure.BugStruct):
         self.UartData["Rx" + str(self.UartCounterRx)] = self.GetIOStructData()
         self.UartCounterRx += 1
 
-    def SetUartTxIO(self, Group, Pin, Remap):
+    def AddUartTxIO(self, Group, Pin, Remap):
         self.SetIOStructGroup(Group)
         self.SetIOStructMode("Tx")
         self.SetIOStructPin(Pin)
@@ -37,6 +35,7 @@ class UARTStruct(IOStructure.IOStruct, BugStructure.BugStruct):
 
     def GetUARTStructData(self, ModelName):
         self.UartData["ModelName"] = ModelName
+        self.UartData["UartBug"] = self.GetBugData("uart")
         return self.UartData
 
 if __name__ == "__main__":
@@ -44,9 +43,9 @@ if __name__ == "__main__":
 
     uart0.AddUartBug("DMA model0 无法使用")
     uart0.AddUartBug("UART FIFO")
-    uart0.SetUartRxIO("GroupA", "Pin_0", "Remap_0")
-    uart0.SetUartTxIO("GroupA", "Pin_1", "Remap_0")
-    uart0.SetUartTxIO("GroupD", "Pin_5", "Remap_0")
+    uart0.AddUartRxIO("GroupA", "Pin_0", "Remap_0")
+    uart0.AddUartTxIO("GroupA", "Pin_1", "Remap_0")
+    uart0.AddUartTxIO("GroupD", "Pin_5", "Remap_0")
     print(uart0.GetUARTStructData("Uart0"))
     print(uart0.GetUARTStructData("Uart0")["Rx0"]["Group"])
     # for bugdata in uart0.GetBugList():
