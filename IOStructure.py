@@ -48,7 +48,6 @@ class IOStruct(object):
         return self.IOStruct_Remap, self.IOStruct_Mode, self.IOStruct_Pin, self.IOStruct_Group
 
     def GetIOStructData(self):
-        super().__init__()
         self.IOStructData = {
             "Group": self.IOStruct_Group, 
             "Model": self.IOStruct_Mode, 
