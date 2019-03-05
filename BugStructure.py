@@ -24,11 +24,16 @@ class BugStruct(object):
         return self.BugTextList
 
     def GetBugListNumber(self, Model):
-        return self.counter[Model]
+        if Model in self.counter:
+            return self.counter[Model]
+        else:
+            return 0
 
     def GetBugData(self, Model):
-        return self.BugTextList[Model]
-    
+        if Model in self.BugTextList:
+            return self.BugTextList[Model]
+        else:
+            return 0
 if __name__ == "__main__":
     buglist = BugStruct()
     buglist.addBug("uart0", "bug text1")

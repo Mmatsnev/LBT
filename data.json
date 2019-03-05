@@ -1,5 +1,0 @@
-["UART0", {"Group": "GPIOA", "Model": "Tx", "Pin": "Pin_1", "Remap": "Remap_0"}]
-["UART0", {"Group": "GPIOA", "Model": "RX", "Pin": "Pin_0", "Remap": "Remap_0"}]
-["UART0", {"Group": "GPIOA", "Model": "Tx", "Pin": "Pin_1", "Remap": "Remap_0"}]
-["UART0", {"Group": "GPIOA", "Model": "RX", "Pin": "Pin_0", "Remap": "Remap_0"}]
-["UART0", {"Group": "GPIOA", "Model": "Tx", "Pin": "Pin_1", "Remap": "Remap_0"}]
