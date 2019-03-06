@@ -44,9 +44,6 @@ class IOStruct(object):
     def GetIOStructGroup(self):
         return self.IOStruct_Group
 
-    def GetStruct(self):
-        return self.IOStruct_Remap, self.IOStruct_Mode, self.IOStruct_Pin, self.IOStruct_Group
-
     def GetIOStructData(self):
         self.IOStructData = {
             "Group": self.IOStruct_Group, 
@@ -60,12 +57,10 @@ class IOStruct(object):
 if __name__ == "__main__":
     print(IOStruct.__doc__)
     test = IOStruct()
-    print(test.GetStruct())
     test.SetIOStructRemap("Remap_0")
     test.SetIOStructGroup("GPIOA")
     test.SetIOStructMode("RX")
     test.SetIOStructPin("Pin_0")
-    print(test.GetStruct())
     print(test.GetIOStructData())
     test.SetIOStructPin("Pin_1")
     test.SetIOStructMode("Tx")

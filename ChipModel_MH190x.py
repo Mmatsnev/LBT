@@ -20,6 +20,17 @@ class ChipMH190x(UARTStructure.UARTStruct, SPIStructure.SPIStruct):
             self.MH190xData[ChipName]["SPI"] = self.GetSPIStructData()
             return self.MH190xData
 
+    def SaveDataToFile(self):
+        for ChipName in self.MH190xData:
+            with open(ChipName + "Data.json", 'w') as FileWrite:
+                FileWrite.write(json.dumps(self.MH190xData[ChipName]))
+
+    def GetMH190xDataFromFile(self, ChipName):
+        with open(ChipName + "Data.json", 'r') as FileRead:
+            FileData = FileRead.readline()
+        return json.loads(FileData)
+
+
 if __name__ == "__main__":
     mh1902 = ChipMH190x("MH1902")
     mh1902.AddUartRxIO("uart0", "GroupA", "Pin_0", "Remap_0")
@@ -35,13 +46,16 @@ if __name__ == "__main__":
     mh1902.AddSpiIO_Clk("spi1", "GPIOD", "Pin_0", "Remap_2")
     print(mh1902.GetMH190xData("MH1902"))
     print(mh1902.GetMH190xData("MH1903"))
+    
 
     mh1903 = ChipMH190x("MH1903")
     print(mh1903.GetMH190xData("MH1903"))
 
     mh1903.AddUartBug("1903 uart bug test")
     print(mh1903.GetMH190xData("MH1903"))
-
+    mh1903.SaveDataToFile()
+    mh1902.SaveDataToFile()
+    print(mh1902.GetMH190xDataFromFile("MH1902"))
     # print(mh1902.GetMH1902StructData("MH1902"))
     # with open("data.json", "w") as writeFile:
     #     writeFile.write(json.dumps(mh1902.GetMH1902StructData("MH1902")))

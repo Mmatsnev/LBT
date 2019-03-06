@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DialogAdd</class>
+ <widget class="QDialog" name="DialogAdd">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>518</width>
+    <height>508</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
+  <widget class="QComboBox" name="comboBoxChipSelect">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>40</y>
+     <width>69</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>MH1901</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>MH1902</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>MH1902S</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>MH1903</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>MH1901H</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>100</y>
+     <width>179</width>
+     <height>106</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayoutModuleSelect">
+    <item row="3" column="1">
+     <widget class="QRadioButton" name="radioButtonUART">
+      <property name="text">
+       <string>UART</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QRadioButton" name="radioButtonLCD">
+      <property name="text">
+       <string>LCD</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QRadioButton" name="radioButtonSPI">
+      <property name="text">
+       <string>SPI</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QRadioButton" name="radioButtonDCMI">
+      <property name="text">
+       <string>DCMI</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QRadioButton" name="radioButtonPWM">
+      <property name="text">
+       <string>PWM</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QRadioButton" name="radioButtonMIPI">
+      <property name="text">
+       <string>MIPI</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QRadioButton" name="radioButtonKeyBoard">
+      <property name="text">
+       <string>KeyBoard</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QRadioButton" name="radioButtonSCI">
+      <property name="text">
+       <string>SCI</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QRadioButton" name="radioButtonI2C">
+      <property name="text">
+       <string>I2C</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QRadioButton" name="radioButtonSDIO">
+      <property name="text">
+       <string>SDIO</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QRadioButton" name="radioButtonSDRAM">
+      <property name="text">
+       <string>SDRAM</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QRadioButton" name="radioButtonADC">
+      <property name="text">
+       <string>ADC</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QRadioButton" name="radioButtonPSRAM">
+      <property name="text">
+       <string>PSRAM</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>230</y>
+     <width>91</width>
+     <height>151</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayoutIOInput">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayoutModuleInput">
+      <item>
+       <widget class="QLabel" name="labelModule">
+        <property name="text">
+         <string>Module</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEditModuleInput"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayoutGroupInput">
+      <item>
+       <widget class="QLabel" name="labelGroupInput">
+        <property name="text">
+         <string>Group</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxGroupSelect">
+        <item>
+         <property name="text">
+          <string>A</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>B</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>C</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>D</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>E</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>F</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>G</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>H</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayoutPinInput">
+      <item>
+       <widget class="QLabel" name="labelPinInput">
+        <property name="text">
+         <string>Pin</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEditPinInput"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayoutRemapInput">
+      <item>
+       <widget class="QLabel" name="labelRemapInput">
+        <property name="text">
+         <string>Remap</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxRemapSelect">
+        <item>
+         <property name="text">
+          <string>0</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>2</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>3</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>240</y>
+     <width>131</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>添加</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>410</y>
+     <width>281</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>80</y>
+     <width>160</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayouttest">
+    <property name="horizontalSpacing">
+     <number>10</number>
+    </property>
+    <property name="verticalSpacing">
+     <number>15</number>
+    </property>
+   </layout>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>radioButtonUART</sender>
+   <signal>clicked()</signal>
+   <receiver>textEdit</receiver>
+   <slot>paste()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>142</x>
+     <y>156</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>153</x>
+     <y>426</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
