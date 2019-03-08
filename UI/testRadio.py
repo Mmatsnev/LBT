@@ -4,7 +4,7 @@
 import sys
 from PyQt5 import QtWidgets, QtCore
 
-class TestRadio(QtWidgets.QDialog):
+class TestRadio(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
@@ -12,7 +12,8 @@ class TestRadio(QtWidgets.QDialog):
     def initUI(self):
 
         self.initRadioButton()
-        self.setGeometry(20, 50, 600, 400)
+        self.resize(600, 400)
+        self.move(50, 100)
         self.setWindowTitle("Test Radio")
         self.show()
 

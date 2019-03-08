@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\Python\LBT项目\LBT\UI\Add.ui'
+# Form implementation generated from reading ui file 'e:\code\Python\LBT项目\LBT\UI\Add.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.9
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -175,14 +175,4 @@ class Ui_DialogAdd(object):
         self.comboBoxRemapSelect.setItemText(1, _translate("DialogAdd", "2"))
         self.comboBoxRemapSelect.setItemText(2, _translate("DialogAdd", "3"))
         self.pushButton.setText(_translate("DialogAdd", "添加"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    DialogAdd = QtWidgets.QDialog()
-    ui = Ui_DialogAdd()
-    ui.setupUi(DialogAdd)
-    DialogAdd.show()
-    sys.exit(app.exec_())
 
