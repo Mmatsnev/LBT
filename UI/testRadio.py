@@ -12,12 +12,14 @@ class TestRadio(QtWidgets.QDialog):
     def initUI(self):
 
         self.initRadioButton()
-        # self.setGeometry(20, 50, 600, 400)
+        self.setGeometry(20, 50, 600, 400)
         self.setWindowTitle("Test Radio")
         self.show()
 
     def initRadioButton(self):
         self.gridLayoutModuleSelect = QtWidgets.QGridLayout(self)
+        self.gridLayoutModuleSelect.SetMaximumSize(100, 100, 100, 100)
+        self.gridLayoutModuleSelect.setObjectName("gridLayoutWidget")
         self.radioGroup = QtWidgets.QButtonGroup(self)
 
         self.radioButtonADC = QtWidgets.QRadioButton("ADC", self)
