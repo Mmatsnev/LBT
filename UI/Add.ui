@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>518</width>
-    <height>508</height>
+    <width>767</width>
+    <height>544</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,8 +19,8 @@
   <widget class="QComboBox" name="comboBoxChipSelect">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>40</y>
+     <x>50</x>
+     <y>30</y>
      <width>69</width>
      <height>22</height>
     </rect>
@@ -57,35 +57,21 @@
      <x>50</x>
      <y>100</y>
      <width>179</width>
-     <height>106</height>
+     <height>115</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayoutModuleSelect">
-    <item row="3" column="1">
-     <widget class="QRadioButton" name="radioButtonUART">
+    <item row="5" column="1">
+     <widget class="QRadioButton" name="radioButtonSDIO">
       <property name="text">
-       <string>UART</string>
+       <string>SDIO</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="0">
+    <item row="4" column="0">
      <widget class="QRadioButton" name="radioButtonLCD">
       <property name="text">
        <string>LCD</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0">
-     <widget class="QRadioButton" name="radioButtonSPI">
-      <property name="text">
-       <string>SPI</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="1">
-     <widget class="QRadioButton" name="radioButtonDCMI">
-      <property name="text">
-       <string>DCMI</string>
       </property>
      </widget>
     </item>
@@ -96,17 +82,24 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
+    <item row="1" column="1">
+     <widget class="QRadioButton" name="radioButtonDCMI">
+      <property name="text">
+       <string>DCMI</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
      <widget class="QRadioButton" name="radioButtonMIPI">
       <property name="text">
        <string>MIPI</string>
       </property>
      </widget>
     </item>
-    <item row="3" column="2">
-     <widget class="QRadioButton" name="radioButtonKeyBoard">
+    <item row="6" column="0">
+     <widget class="QRadioButton" name="radioButtonADC">
       <property name="text">
-       <string>KeyBoard</string>
+       <string>ADC</string>
       </property>
      </widget>
     </item>
@@ -117,7 +110,7 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
+    <item row="5" column="0">
      <widget class="QRadioButton" name="radioButtonI2C">
       <property name="text">
        <string>I2C</string>
@@ -125,30 +118,44 @@
      </widget>
     </item>
     <item row="4" column="1">
-     <widget class="QRadioButton" name="radioButtonSDIO">
+     <widget class="QRadioButton" name="radioButtonUART">
       <property name="text">
-       <string>SDIO</string>
+       <string>UART</string>
       </property>
      </widget>
     </item>
     <item row="4" column="2">
+     <widget class="QRadioButton" name="radioButtonKeyBoard">
+      <property name="text">
+       <string>KeyBoard</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="2">
      <widget class="QRadioButton" name="radioButtonSDRAM">
       <property name="text">
        <string>SDRAM</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="0">
-     <widget class="QRadioButton" name="radioButtonADC">
-      <property name="text">
-       <string>ADC</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="2">
+    <item row="3" column="2">
      <widget class="QRadioButton" name="radioButtonPSRAM">
       <property name="text">
        <string>PSRAM</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QRadioButton" name="radioButtonSPI">
+      <property name="text">
+       <string>SPI</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
@@ -282,8 +289,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>180</x>
-     <y>240</y>
+     <x>160</x>
+     <y>280</y>
      <width>131</width>
      <height>101</height>
     </rect>
@@ -301,24 +308,6 @@
      <height>71</height>
     </rect>
    </property>
-  </widget>
-  <widget class="QWidget" name="gridLayoutWidget_2">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>80</y>
-     <width>160</width>
-     <height>80</height>
-    </rect>
-   </property>
-   <layout class="QGridLayout" name="gridLayouttest">
-    <property name="horizontalSpacing">
-     <number>10</number>
-    </property>
-    <property name="verticalSpacing">
-     <number>15</number>
-    </property>
-   </layout>
   </widget>
  </widget>
  <resources/>
