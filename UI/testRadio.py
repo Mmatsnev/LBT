@@ -9,22 +9,22 @@ class TestRadio(QtWidgets.QWidget):
         super().__init__()
         self.ChipModuleList = ModuleList
         self.ChipIOGroupList = [chr(index + 65) for index in range(IOGroupNumber)]
+        self.textShowStruct = {"ChipModel": "-", "Module": "-", "IOGroup": "-", "IOPin": "-", "IORemap": "-", "管脚作用": "-"}
 
         self.initUI()
         
 
     def initUI(self):
-
         
-        self.ChipModuleSelectUI()
         self.ChipIOParamInputUI()
         self.ShowParamUI()
+        self.ChipModuleSelectUI()
         self.ChipModelSelectUI()
         self.pushButtonConfirmAdd = QtWidgets.QPushButton("确认添加", self)
         self.pushButtonConfirmAdd.resize(200, 200)
-        self.pushButtonConfirmAdd.move(300, 100)
+        self.pushButtonConfirmAdd.move(400, 100)
 
-        self.resize(600, 550)
+        self.resize(900, 600)
         self.move(50, 100)
         self.setWindowTitle("Test Radio")
         self.show()
@@ -38,7 +38,7 @@ class TestRadio(QtWidgets.QWidget):
         self.radioGroupModuleSelect = QtWidgets.QButtonGroup(self)
 
         # 把gridgroup 信号连接到槽
-        self.radioGroupModuleSelect.buttonClicked.connect(self.ShowChipModuleSelect)
+        self.radioGroupModuleSelect.buttonClicked.connect(self.SetTextEditText)
         # 设置grid 布局中相邻控件的间隔
         self.gridLayoutModuleSelect.setHorizontalSpacing(6)
         self.gridLayoutModuleSelect.setVerticalSpacing(6)
@@ -70,6 +70,8 @@ class TestRadio(QtWidgets.QWidget):
         self.labelIOParamRemap = QtWidgets.QLabel("Remap", self)
 
         self.lineEditIOParamModule = QtWidgets.QLineEdit(self)
+        self.lineEditIOParamModule.setMaxLength(20)
+        self.lineEditIOParamModule.textChanged.connect(self.SetTextEditText)
 
         self.gridLayoutIOParamInput = QtWidgets.QGridLayout()
         self.gridLayoutIOParamInput.setObjectName("gridLayoutIOParamInput")
@@ -90,9 +92,9 @@ class TestRadio(QtWidgets.QWidget):
         self.radioGroupIORemapSelect = QtWidgets.QButtonGroup(self)
 
         # 把gridgroup 信号连接到槽
-        self.radioGroupIOGroupSelect.buttonClicked.connect(self.ShowIOGroupSelect)
-        self.radioGroupIOPinSelect.buttonClicked.connect(self.ShowIOPinSelect)
-        self.radioGroupIORemapSelect.buttonClicked.connect(self.ShowIORemapSelect)
+        self.radioGroupIOGroupSelect.buttonClicked.connect(self.SetTextEditText)
+        self.radioGroupIOPinSelect.buttonClicked.connect(self.SetTextEditText)
+        self.radioGroupIORemapSelect.buttonClicked.connect(self.SetTextEditText)
         # 设置grid 布局中相邻控件的间隔
         self.gridLayoutIOParamInput.setHorizontalSpacing(10)
         self.gridLayoutIOParamInput.setVerticalSpacing(20)
@@ -166,33 +168,41 @@ class TestRadio(QtWidgets.QWidget):
             if gridLayoutCol == 4:
                 gridLayoutCol = 0
                 gridLayoutRow += 1
-    
+
     def ChipModelSelectUI(self):
         self.comboBoxChipModelSelect = QtWidgets.QComboBox(self)
         self.comboBoxChipModelSelect.addItem("MH1901")
         self.comboBoxChipModelSelect.addItem("MH1902")
         self.comboBoxChipModelSelect.addItem("MH1903")
+        self.comboBoxChipModelSelect.activated.connect(self.SetTextEditText)
 
         self.comboBoxChipModelSelect.move(50, 50)
 
     def ShowParamUI(self):
         self.textEditShowParam = QtWidgets.QTextEdit(self)
         self.textEditShowParam.setReadOnly(True)
-        self.textEditShowParam.resize(300, 50)
+        self.textEditShowParam.resize(300, 100)
         self.textEditShowParam.move(50, 450)
 
-    def ShowChipModuleSelect(self):
-        print(self.radioGroupModuleSelect.checkedButton().text())
-        self.textEditShowParam.setText(self.radioGroupModuleSelect.checkedButton().text())
-
-    def ShowIOGroupSelect(self):
-        print(self.radioGroupIOGroupSelect.checkedButton().text())
-
-    def ShowIOPinSelect(self):
-        print(self.radioGroupIOPinSelect.checkedButton().text())
-
-    def ShowIORemapSelect(self):
-        print(self.radioGroupIORemapSelect.checkedButton().text())
+    def SetTextEditText(self):
+        if self.radioGroupModuleSelect.checkedButton():
+            self.textShowStruct["Module"] = self.radioGroupModuleSelect.checkedButton().text()
+        if self.radioGroupIOGroupSelect.checkedButton():
+            self.textShowStruct["IOGroup"] = self.radioGroupIOGroupSelect.checkedButton().text()
+        if self.radioGroupIOPinSelect.checkedButton():            
+            self.textShowStruct["IOPin"] = self.radioGroupIOPinSelect.checkedButton().text()
+        if self.radioGroupIORemapSelect.checkedButton():
+            self.textShowStruct["IORemap"] = self.radioGroupIORemapSelect.checkedButton().text()
+        self.textShowStruct["ChipModel"] = self.comboBoxChipModelSelect.currentText()
+        if not self.lineEditIOParamModule.text():
+            self.textShowStruct["管脚作用"] = "-"
+        else:
+            self.textShowStruct["管脚作用"] = self.lineEditIOParamModule.text()
+        
+        self.textEditShowParam.setText("芯片型号：%s\n模块：%s\n管脚作用：%s\nIO：P%s%s,Remap_%s"%(
+            self.textShowStruct["ChipModel"], self.textShowStruct["Module"], self.textShowStruct["管脚作用"], 
+            self.textShowStruct["IOGroup"], self.textShowStruct["IOPin"], self.textShowStruct["IORemap"]))
+            
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
