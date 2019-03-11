@@ -21,11 +21,12 @@ class TestRadio(QtWidgets.QWidget):
         self.ChipModuleSelectUI()
         self.ChipModelSelectUI()
         self.pushButtonConfirmAdd = QtWidgets.QPushButton("确认添加", self)
+        self.pushButtonConfirmAdd.clicked.connect(self.SaveData)
         self.pushButtonConfirmAdd.resize(200, 200)
         self.pushButtonConfirmAdd.move(400, 100)
 
         self.resize(900, 600)
-        self.move(50, 100)
+        self.move(50, 50)
         self.setWindowTitle("Test Radio")
         self.show()
 
@@ -203,6 +204,8 @@ class TestRadio(QtWidgets.QWidget):
             self.textShowStruct["ChipModel"], self.textShowStruct["Module"], self.textShowStruct["管脚作用"], 
             self.textShowStruct["IOGroup"], self.textShowStruct["IOPin"], self.textShowStruct["IORemap"]))
             
+    def SaveData(self):
+        print(self.textShowStruct)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
