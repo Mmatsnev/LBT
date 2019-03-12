@@ -2,14 +2,16 @@
 #-*- coding: utf-8 -*-
 
 import sys
+import json
 from PyQt5 import QtWidgets, QtCore
+from ChipModel_MH190x import ChipMH190x
 
 class TestRadio(QtWidgets.QWidget):
     def __init__(self, ModuleList, IOGroupNumber):
         super().__init__()
         self.ChipModuleList = ModuleList
         self.ChipIOGroupList = [chr(index + 65) for index in range(IOGroupNumber)]
-        self.textShowStruct = {"ChipModel": "-", "Module": "-", "IOGroup": "-", "IOPin": "-", "IORemap": "-", "管脚作用": "-"}
+        self.textShowStruct = {"ChipModel": "-", "Module": "-", "IOGroup": "-", "IOPin": "-", "IORemap": "-", "IOUsage": "-"}
 
         self.initUI()
         
@@ -56,7 +58,7 @@ class TestRadio(QtWidgets.QWidget):
         # 把创建的模块Radio 按钮添加到grid 布局中，同时添加到radio 组中。
         self.ChipModuleSelectRadioNames = self.__dict__
         for i in range(len(self.ChipModuleList)):
-            self.ChipModuleSelectRadioNames['radioButton' + self.ChipModuleList[i]] = QtWidgets.QRadioButton(self.ChipModuleList[i], self)
+            self.ChipModuleSelectRadioNames['radioButton' + self.ChipModuleList[i]] = QtWidgets.QCheckBox(self.ChipModuleList[i], self)
             self.radioGroupModuleSelect.addButton(self.ChipModuleSelectRadioNames['radioButton' + self.ChipModuleList[i]])
             self.gridLayoutModuleSelect.addWidget(self.ChipModuleSelectRadioNames['radioButton' + self.ChipModuleList[i]], gridLayoutRow, gridLayoutCol)
             gridLayoutCol += 1
@@ -196,15 +198,17 @@ class TestRadio(QtWidgets.QWidget):
             self.textShowStruct["IORemap"] = self.radioGroupIORemapSelect.checkedButton().text()
         self.textShowStruct["ChipModel"] = self.comboBoxChipModelSelect.currentText()
         if not self.lineEditIOParamModule.text():
-            self.textShowStruct["管脚作用"] = "-"
+            self.textShowStruct["IOUsage"] = "-"
         else:
-            self.textShowStruct["管脚作用"] = self.lineEditIOParamModule.text()
+            self.textShowStruct["IOUsage"] = self.lineEditIOParamModule.text()
         
         self.textEditShowParam.setText("芯片型号：%s\n模块：%s\n管脚作用：%s\nIO：P%s%s,Remap_%s"%(
-            self.textShowStruct["ChipModel"], self.textShowStruct["Module"], self.textShowStruct["管脚作用"], 
+            self.textShowStruct["ChipModel"], self.textShowStruct["Module"], self.textShowStruct["IOUsage"], 
             self.textShowStruct["IOGroup"], self.textShowStruct["IOPin"], self.textShowStruct["IORemap"]))
             
     def SaveData(self):
+        with open("test.json", 'a') as FileWrite:
+            FileWrite.write(json.dumps(self.textShowStruct))
         print(self.textShowStruct)
 
 if __name__ == "__main__":

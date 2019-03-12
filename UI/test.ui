@@ -6,41 +6,176 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>729</width>
+    <height>513</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>40</y>
+     <width>69</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>1901</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1902</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1903</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QTableWidget" name="tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>120</y>
+     <width>351</width>
+     <height>111</height>
+    </rect>
+   </property>
+   <row>
+    <property name="text">
+     <string>Tx</string>
+    </property>
+   </row>
+   <row>
+    <property name="text">
+     <string>Rx</string>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>Group</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Pin</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Remap</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>490</x>
+     <y>140</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消显示该模块</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>270</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>增加模块显示</string>
+   </property>
+  </widget>
   <widget class="QWidget" name="gridLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>80</y>
-     <width>186</width>
-     <height>80</height>
+     <x>150</x>
+     <y>20</y>
+     <width>401</width>
+     <height>81</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
-     <widget class="QRadioButton" name="radioButton_2">
+    <item row="0" column="3">
+     <widget class="QCheckBox" name="checkBox_7">
       <property name="text">
-       <string>RadioButton</string>
+       <string>CheckBox</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="3">
+     <widget class="QCheckBox" name="checkBox_8">
+      <property name="text">
+       <string>CheckBox</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QCheckBox" name="checkBox_2">
+      <property name="text">
+       <string>CheckBox</string>
       </property>
      </widget>
     </item>
     <item row="0" column="0">
-     <widget class="QRadioButton" name="radioButton">
+     <widget class="QCheckBox" name="checkBox">
       <property name="text">
-       <string>RadioButton</string>
+       <string>CheckBox</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QCheckBox" name="checkBox_5">
+      <property name="text">
+       <string>CheckBox</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QCheckBox" name="checkBox_4">
+      <property name="text">
+       <string>CheckBox</string>
       </property>
      </widget>
     </item>
     <item row="0" column="1">
-     <widget class="QRadioButton" name="radioButton_3">
+     <widget class="QCheckBox" name="checkBox_3">
       <property name="text">
-       <string>RadioButton</string>
+       <string>CheckBox</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QCheckBox" name="checkBox_6">
+      <property name="text">
+       <string>CheckBox</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="4">
+     <widget class="QCheckBox" name="checkBox_9">
+      <property name="text">
+       <string>CheckBox</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="4">
+     <widget class="QCheckBox" name="checkBox_10">
+      <property name="text">
+       <string>CheckBox</string>
       </property>
      </widget>
     </item>

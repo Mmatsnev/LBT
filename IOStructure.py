@@ -46,10 +46,10 @@ class IOStruct(object):
 
     def GetIOStructData(self):
         self.IOStructData = {
-            "Group": self.IOStruct_Group, 
-            "Model": self.IOStruct_Mode, 
-            "Pin": self.IOStruct_Pin, 
-            "Remap": self.IOStruct_Remap
+            "IOGroup": self.IOStruct_Group, 
+            "IOUsage": self.IOStruct_Mode, 
+            "IOPin": self.IOStruct_Pin, 
+            "IORemap": self.IOStruct_Remap
             }
         return self.IOStructData
         
