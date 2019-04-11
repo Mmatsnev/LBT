@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 
 import sys
-from GenerateRandomNumbers import GenerateRandomNumbers
+from GenerateRandomNumbers import GenerateRandomNumbers, WriteToFile
 from PyQt5 import QtWidgets, QtCore, QtGui
 
 class Example(QtWidgets.QWidget):
@@ -19,9 +19,13 @@ class Example(QtWidgets.QWidget):
         self.LineEditGetNumber = QtWidgets.QLineEdit(self)
         self.LineEditGetNumber.move(20, 40)
 
+        # 限制单行文本输入框输入
         self.pIntValidator = QtGui.QIntValidator(self)
-        # self.pIntValidator.setRange(1, 99)
+        self.pIntValidator.setRange(1, 1000000)
         self.LineEditGetNumber.setValidator(self.pIntValidator)
+
+        self.TextEditRandomData = QtWidgets.QTextEdit(self)
+        self.TextEditRandomData.move(20, 80)
 
         self.resize(400, 600)
         self.setWindowTitle("生成随机数")
@@ -33,7 +37,8 @@ class Example(QtWidgets.QWidget):
             number = int(self.LineEditGetNumber.text())
         else:
             number = 256
-        GenerateRandomNumbers(number)
+        self.TextEditRandomData.setText(GenerateRandomNumbers(number))
+        WriteToFile(GenerateRandomNumbers(number))
         print("ts")
 
 if __name__ == "__main__":
