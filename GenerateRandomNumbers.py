@@ -15,7 +15,7 @@ def GenerateRandomNumbers(number):
             tmp = tmp + "\n"
     return tmp
 
-def WriteToFile(strdata):
+def RandomDataWriteToFile(strdata):
     with open("data.txt", 'w') as filewrite:
         print("write File")
         filewrite.write(strdata)

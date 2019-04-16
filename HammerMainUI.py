@@ -2,7 +2,7 @@
 #-*- coding: utf-8 -*-
 
 import sys
-from GenerateRandomNumbers import GenerateRandomNumbers, WriteToFile
+from GenerateRandomNumbers import GenerateRandomNumbers, RandomDataWriteToFile
 from PyQt5 import QtWidgets, QtCore, QtGui
 
 class Example(QtWidgets.QWidget):
@@ -21,8 +21,11 @@ class Example(QtWidgets.QWidget):
 
         # 限制单行文本输入框输入
         self.pIntValidator = QtGui.QIntValidator(self)
-        self.pIntValidator.setRange(1, 1000000)
+        self.pIntValidator.setRange(1, 100000)
         self.LineEditGetNumber.setValidator(self.pIntValidator)
+
+        self.CheckBoxIsSaveTandomToFile = QtWidgets.QCheckBox("是否保存到文件", self)
+        self.CheckBoxIsSaveTandomToFile.move(20, 20)
 
         self.TextEditRandomData = QtWidgets.QTextEdit(self)
         self.TextEditRandomData.move(20, 80)
@@ -37,8 +40,12 @@ class Example(QtWidgets.QWidget):
             number = int(self.LineEditGetNumber.text())
         else:
             number = 256
-        self.TextEditRandomData.setText(GenerateRandomNumbers(number))
-        WriteToFile(GenerateRandomNumbers(number))
+        self.RandomData = GenerateRandomNumbers(number)
+        self.TextEditRandomData.setText(self.RandomData)
+        if self.CheckBoxIsSaveTandomToFile.isChecked():
+            RandomDataWriteToFile(self.RandomData)
+        
+        
         print("ts")
 
 if __name__ == "__main__":
