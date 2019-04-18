@@ -17,19 +17,25 @@ class StackedWidget(QtWidgets.QWidget):
         self.leftlist.insertItem(0, '联系方式')
         self.leftlist.insertItem(1, '个人信息')
         self.leftlist.insertItem(2, '教育程度')
+        self.leftlist.insertItem(3, 'page3')
+
 
         self.stack1 = QtWidgets.QWidget()
         self.stack2 = QtWidgets.QWidget()
         self.stack3 = QtWidgets.QWidget()
+        self.stack4 = QtWidgets.QWidget()
 
         self.stack1UI()
         self.stack2UI()
         self.stack3UI()
 
         self.Stack = QtWidgets.QStackedWidget(self)
-        self.Stack.addWidget(self.stack1)
-        self.Stack.addWidget(self.stack2)
-        self.Stack.addWidget(self.stack3)
+        # 如果重复添加用同一个 QWidget， 重新添加的 QWidget 的 StackedWidget 索引会被重置
+        print("索引号：", self.Stack.addWidget(self.stack2))
+        print("索引号：", self.Stack.addWidget(self.stack1))
+        print("索引号：", self.Stack.addWidget(self.stack3))
+        print("索引号：", self.Stack.addWidget(self.stack4))
+        print("页面总数：", self.Stack.count())
 
         self.hbox = QtWidgets.QHBoxLayout(self)
         self.hbox.addWidget(self.leftlist)
@@ -60,6 +66,7 @@ class StackedWidget(QtWidgets.QWidget):
         self.stack3.setLayout(self.layout)
 
     def display(self, i):
+        print("当前索引：", i)
         self.Stack.setCurrentIndex(i)
 
 if __name__ == "__main__":
