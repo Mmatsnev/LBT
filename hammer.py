@@ -9,7 +9,6 @@ from BinToString_UI import BinToString
 class Hammer(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
-        self.initUI()
 
     def initUI(self):
         self.resize(600, 400)
@@ -32,14 +31,16 @@ class Hammer(QtWidgets.QWidget):
 
         # 实例化随机数类
         self.GenerateRandom = GenerateRandom()
-        # 创建 QWidget 添加随机数类
+        # 创建 QWidget 添加随机数实例
         self.stackRandom = QtWidgets.QWidget()
         self.stackRandom.setLayout(self.GenerateRandom.StackGenerateRandomNumbersUI())
 
+        # 实例化 BinToString 类
         self.BinToString = BinToString()
+        # 创建 QWidget 添加 BinToString 实例
         self.StackBinToString = QtWidgets.QWidget()
         self.StackBinToString.setLayout(self.BinToString.BinToStringUI())
-        
+
         # 右侧列表中增加元素
         self.RightStack.addWidget(self.stackRandom)
         self.RightStack.addWidget(self.StackBinToString)
@@ -59,5 +60,6 @@ class Hammer(QtWidgets.QWidget):
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     hammer = Hammer()
+    hammer.initUI()
     hammer.show()
     sys.exit(app.exec_())

@@ -28,13 +28,14 @@ class BinToString(QtWidgets.QWidget):
         # 创建一个多行文本框显示文件数据
         self.TextEditShowFileData = QtWidgets.QTextEdit(self)
 
+        # 创建一个 lable 显示文件字节数
         self.LableShowFileCounter = QtWidgets.QLabel(self)
         
         self.GridLayout = QtWidgets.QGridLayout()
         self.GridLayout.addWidget(self.LineEditShowFilePath, 0, 0)
         self.GridLayout.addWidget(self.ButtonChooseFile, 0, 1)
-        self.GridLayout.addWidget(self.TextEditShowFileData, 1, 0, 1, 2)
-        self.GridLayout.addWidget(self.LableShowFileCounter, 2, 0)
+        self.GridLayout.addWidget(self.TextEditShowFileData, 2, 0, 1, 2)
+        self.GridLayout.addWidget(self.LableShowFileCounter, 1, 0)
 
         self.setLayout(self.GridLayout)
         return self.GridLayout
@@ -61,7 +62,7 @@ class BinToString(QtWidgets.QWidget):
         self.fileName_choose, filetype = QtWidgets.QFileDialog.getOpenFileName(self,  
                                     "选取文件",  
                                     self.cwd, # 起始路径 
-                                    "All Files (*);;Text Files (*.txt)")   # 设置文件扩展名过滤,用双分号间隔
+                                    "Bin Files (*.bin);;All Files (*);;Text Files (*.txt)")   # 设置文件扩展名过滤,用双分号间隔
 
         if self.fileName_choose == "":
             print("\n取消选择")
