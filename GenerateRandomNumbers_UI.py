@@ -37,14 +37,14 @@ class GenerateRandom(QtWidgets.QWidget):
         # 生成一个文本框显示随机数
         self.TextEditRandomData = QtWidgets.QTextEdit(self)
 
-        self.GridGenerateRandom = QtWidgets.QGridLayout(self)
-        self.GridGenerateRandom.addWidget(self.CheckBoxIsSaveTandomToFile, 0, 0, 1, 1)
-        self.GridGenerateRandom.addWidget(self.LineEditGetNumber, 1, 0, 1, 1)
-        self.GridGenerateRandom.addWidget(self.PushButtonGenerateRandomNumbers, 1, 10, 1, 1)
-        self.GridGenerateRandom.addWidget(self.TextEditRandomData, 2, 0, 1, 20)
+        self.GridLayoutGenerateRandom = QtWidgets.QGridLayout(self)
+        self.GridLayoutGenerateRandom.addWidget(self.CheckBoxIsSaveTandomToFile, 0, 0, 1, 1)
+        self.GridLayoutGenerateRandom.addWidget(self.LineEditGetNumber, 1, 0, 1, 1)
+        self.GridLayoutGenerateRandom.addWidget(self.PushButtonGenerateRandomNumbers, 1, 10, 1, 1)
+        self.GridLayoutGenerateRandom.addWidget(self.TextEditRandomData, 2, 0, 1, 20)
 
         print("StackGenerateRandomNumbersUI out")
-        return self.GridGenerateRandom
+        return self.GridLayoutGenerateRandom
 
     def GenerateRandomNumbersIRQ(self):
         if self.LineEditGetNumber.text():

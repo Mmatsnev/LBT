@@ -4,6 +4,7 @@
 import sys
 from PyQt5 import QtWidgets, QtGui, QtCore
 from GenerateRandomNumbers_UI import GenerateRandom
+from BinToString_UI import BinToString
 
 class Hammer(QtWidgets.QWidget):
     def __init__(self):
@@ -17,12 +18,6 @@ class Hammer(QtWidgets.QWidget):
         
     
     def mainUI(self):
-        # 实例化随机数类
-        self.GenerateRandom = GenerateRandom()
-        # 创建 QWidget 添加随机数类
-        self.stackRandom = QtWidgets.QWidget()
-        self.stackRandom.setLayout(self.GenerateRandom.StackGenerateRandomNumbersUI())
-
         # 创建左侧列表
         self.leftlist = QtWidgets.QListWidget()
         # 左侧列表被选后发送信号给 display 槽
@@ -33,9 +28,21 @@ class Hammer(QtWidgets.QWidget):
 
         # 左侧列表中增加元素
         self.leftlist.insertItem(0, "获得随机数")
+        self.leftlist.insertItem(1, "bin转换为str数据")
 
+        # 实例化随机数类
+        self.GenerateRandom = GenerateRandom()
+        # 创建 QWidget 添加随机数类
+        self.stackRandom = QtWidgets.QWidget()
+        self.stackRandom.setLayout(self.GenerateRandom.StackGenerateRandomNumbersUI())
+
+        self.BinToString = BinToString()
+        self.StackBinToString = QtWidgets.QWidget()
+        self.StackBinToString.setLayout(self.BinToString.BinToStringUI())
+        
         # 右侧列表中增加元素
         self.RightStack.addWidget(self.stackRandom)
+        self.RightStack.addWidget(self.StackBinToString)
         
 
         # 把左侧和右侧列表添加到 HBoxLayout 
