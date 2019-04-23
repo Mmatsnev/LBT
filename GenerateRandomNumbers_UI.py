@@ -30,6 +30,7 @@ class GenerateRandom(QtWidgets.QWidget):
         self.pIntValidator = QtGui.QIntValidator(self)
         self.pIntValidator.setRange(1, 100000)
         self.LineEditGetNumber.setValidator(self.pIntValidator)
+        self.LineEditGetNumber.setPlaceholderText(str(256))
 
         # 生成一个复选框选择是否保存到文件
         self.CheckBoxIsSaveTandomToFile = QtWidgets.QCheckBox("是否保存到文件", self)

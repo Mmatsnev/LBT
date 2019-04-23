@@ -5,6 +5,17 @@ import sys
 import os
 from PyQt5 import QtWidgets
 
+def FormatListToString(DataList):
+    tmp = ''
+    counter = 0
+    
+    for i in DataList:
+        if counter % 16 == 0:
+            tmp += ('\n' + '0x' + hex(counter)[2:-1].zfill(8) + ': ')
+        tmp += ('0x' + str(i) + ', ')
+        counter += 1
+    return tmp
+
 class BinToString(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -20,18 +31,24 @@ class BinToString(QtWidgets.QWidget):
         # 创建一个按钮，点击后触发 chooseFile 槽
         self.ButtonChooseFile = QtWidgets.QPushButton(self)
         self.ButtonChooseFile.setText("选择文件")
-        self.ButtonChooseFile.clicked.connect(self.slot_btn_chooseFile)
+        self.ButtonChooseFile.clicked.connect(self.SlotBottonChooseFile)
 
         # 创建一个单行文本框显示文件目录
         self.LineEditShowFilePath = QtWidgets.QLineEdit(self)
+        self.LineEditShowFilePath.setReadOnly(True)
         
         # 创建一个多行文本框显示文件数据
         self.TextEditShowFileData = QtWidgets.QTextEdit(self)
 
         # 创建一个 lable 显示文件字节数
         self.LableShowFileCounter = QtWidgets.QLabel(self)
+
+        self.PushButtonIsSaveFile = QtWidgets.QPushButton(self)
+        self.PushButtonIsSaveFile.setText("保存到文件")
+        self.PushButtonIsSaveFile.clicked.connect(self.SlotBottonWriteData)
         
         self.GridLayout = QtWidgets.QGridLayout()
+        self.GridLayout.addWidget(self.PushButtonIsSaveFile, 1, 1)
         self.GridLayout.addWidget(self.LineEditShowFilePath, 0, 0)
         self.GridLayout.addWidget(self.ButtonChooseFile, 0, 1)
         self.GridLayout.addWidget(self.TextEditShowFileData, 2, 0, 1, 2)
@@ -58,28 +75,34 @@ class BinToString(QtWidgets.QWidget):
                     data = fileRead.read(1)
 
 
-    def slot_btn_chooseFile(self):
-        self.fileName_choose, filetype = QtWidgets.QFileDialog.getOpenFileName(self,  
+    def SlotBottonChooseFile(self):
+        self.FileNameSelected, filetype = QtWidgets.QFileDialog.getOpenFileName(self,  
                                     "选取文件",  
                                     self.cwd, # 起始路径 
                                     "Bin Files (*.bin);;All Files (*);;Text Files (*.txt)")   # 设置文件扩展名过滤,用双分号间隔
 
-        if self.fileName_choose == "":
+        if self.FileNameSelected == "":
             print("\n取消选择")
             return
 
         print("\n你选择的文件为:")
-        print(self.fileName_choose)
+        print(self.FileNameSelected)
         print("文件筛选器类型: ",filetype)
-        self.LineEditShowFilePath.setText(self.fileName_choose)
+        self.LineEditShowFilePath.setText(self.FileNameSelected)
         self.ReadBinFile()
-        self.TextEditShowFileData.setText('0x' + ', 0x'.join([str(x) for x in self.FileData]))
+        self.TextEditShowFileData.setText(FormatListToString(self.FileData))
         self.LableShowFileCounter.setText("字节数：" + str(self.FileDataCounter))
+
+    def SlotBottonWriteData(self):
+        if not self.LineEditShowFilePath.text():
+            self.TextEditShowFileData.setText("请先选择文件！")
+            return 
+        self.WriteStringFile(FormatListToString(self.FileData))
 
     def ReadBinFile(self):
         self.FileData = []
         self.FileDataCounter = 0
-        with open(self.fileName_choose, 'rb') as fileRead:
+        with open(self.FileNameSelected, 'rb') as fileRead:
             data = fileRead.read(1)
             while data:
                 self.FileDataCounter += 1
@@ -87,6 +110,10 @@ class BinToString(QtWidgets.QWidget):
                 data = fileRead.read(1)
         print(self.FileData)
         print(self.FileDataCounter)
+
+    def WriteStringFile(self, WriteData):
+        with open(self.FileNameSelected + ".txt", 'w') as FileWrite:
+            FileWrite.write(WriteData)
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
