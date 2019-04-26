@@ -11,8 +11,8 @@ def FormatListToString(DataList):
     
     for i in DataList:
         if counter % 16 == 0:
-            tmp += ('\n' + '0x' + hex(counter)[2:-1].zfill(8) + ': ')
-        tmp += ('0x' + str(i) + ', ')
+            tmp += ('\n' + 'addr:0x' + hex(counter + 0x01000000)[2:].zfill(8).upper() + ' ')
+        tmp += (str(i).upper() + ' ')
         counter += 1
     return tmp
 
@@ -70,7 +70,7 @@ class BinToString(QtWidgets.QWidget):
                         fileWrite.write("\n")
                         counter
                     writedata = bytearray(data).hex()
-                    fileWrite.write('0x' + writedata + ",")
+                    fileWrite.write('addr:0x' + writedata + " ")
                     counter += 1
                     data = fileRead.read(1)
 
